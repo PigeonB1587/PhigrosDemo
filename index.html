@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<!--viewport-fit=cover:Fill the whole screen on iPhone X-->
+	<meta charset="utf-8" name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+	<title>(っ °Д °;)っ</title>
+	<link rel="stylesheet" href="./styleq.css">
+	<link rel="stylesheet" href="./style.css">
+	<script defer src="stat.js"></script>
+	<script defer src="./script.js?v1416"></script>
+	<script defer src="main.js"></script>
+</head>
+
+<body>
+<font face="NoirPro">
+	<div class="main">
+		<h1 class="title"></h1>
+		<p class="info"></p>
+		<p class="profile">Take <a id="qwq">Music score and other resource files (Click to view the instructions)</a><br>Package it into zip and upload it;<br>After reading the contents of the file, adjust<br> the relevant parameters, and finally click the "play" button.<br>Double click the screen when canvas is <br><br><font color="FFFFFF">Playing: </font>
+		<br>Pause in the upper left corner;<br> Restart in the upper right corner; <br>Full screen in the lower right corner.</p>
+		<div id="uploads" class="upload">
+			<input type="button" id="demo" value="Demo" style="display:none">
+			<input type="file" accept="application/x-zip-compressed" id="upload">
+			<label for="upload">Select zip</label>-<input type="text" style="width:0;flex-grow:1;flex-shrink:1;pointer-events:none" id="filename">-
+			<input type="file" accept="application/x-zip-compressed" id="upload">
+			<label for="upload">Continue adding Zip</label>-
+		</div>
+		<input type="button" value="Reset" onclick="location.reload(true)" style="font-family: 'Mina';width:4em;height: 30px;border-radius: 5px;">
+		<div id="select">
+			<div>Chart : <br><select id="select-chart" style="font-family: 'Mina';width:12em;height: 30px;border-radius: 25px;"></select></div><br>
+			<div>Music : <select id="select-bgm" style="font-family: 'Mina';width:8em;height: 20px;border-radius: 25px;"></select></div>
+			<div>Illustration : <select id="select-bg" style="font-family: 'Mina';width:8em;height: 20px;border-radius: 25px;"></select></div><br><br>
+			<div>Width height ratio : <select id="select-aspect-ratio" style="font-family: 'Mina';width:13.5em;height: 20px;border-radius: 25px;">
+					<option value="1.777778" selected>You can only choose 16:9</option>
+				</select>
+			</div><br>
+			<div>Note scaling :<select id="select-scale-ratio" style="font-family: 'Mina';width:8em;height: 20px;border-radius: 25px;">
+					<option value="1e4">smallest</option>
+					<option value="9e3">small</option>
+					<option value="8e3" selected>medium-sized</option>
+					<option value="7e3">Larger</option>
+					<option value="6e3">Largest</option>
+				</select>
+			</div>
+			<div>Background brightness :<select id="select-global-alpha" style="font-family: 'Mina';width:8em;height: 20px;border-radius: 25px;">
+					<option value="1">dark</option>
+					<option value="0.8">dim</option>
+					<option value="0.6" selected>default</option>
+					<option value="0.4">lighter</option>
+					<option value="0.2">bright</option>
+				</select>
+			</div><br>
+			<br>
+			<div>Song title : <input id="input-name" class="input" style="font-family: 'Mina';width:7em;height: 20px;border-radius: 25px;" placeholder="Untitled"></div>
+			<div>Difficulty : <input id="input-level" class="input" style="font-family: 'Mina';width:7em;height: 20px;border-radius: 25px;" placeholder="SP  Lv.?"></div><br>
+			<div>Illustration : <input id="input-illustrator" class="input" style="font-family: 'Mina';width:7em;height: 20px;border-radius: 25px;" placeholder="nameless"></div>
+			<div>Chart author : <input id="input-designer" class="input" style="font-family: 'Mina';width:7em;height: 20px;border-radius: 25px;" placeholder="nameless"></div><br>
+			<div><input type="checkbox" id="feedback" checked><label for="feedback">Touch feedback</label></div>
+			<div><input type="checkbox" id="imageBlur" checked><label for="imageBlur">Blurred background</label></div>
+			<div><input type="checkbox" id="highLight" checked><label for="highLight">Highlight note</label></div><br>
+			<div><input type="checkbox" id="showCE2"><label for="showCE2">Early/Late special effects</label></div>
+			<div><input type="checkbox" id="hitSong" checked><label for="hitSong">Strike sound</label></div>
+			<div><input type="checkbox" id="lineColor"><label for="lineColor">FC/AP indicator</label></div><br>
+			<div><input type="checkbox" id="showPoint"><label for="showPoint">Show anchor points</label></div>
+			<div><input type="checkbox" id="autoplay"><label for="autoplay">AutoPlay</label></div>
+			<div><input type="checkbox" id="hyperMode"><label for="hyperMode">HyperMode</label></div>
+			<div class="disabled-when-playing"><input type="checkbox" id="showTransition" checked><label for="showTransition">Transition animation</label></div><br>
+			<div class="">Chart image : <select id="select-flip" style="font-family: 'Mina';width:4em;height: 20px;border-radius: 25px;">
+					<option value="br" selected>none</option>
+					<option value="bl">X axis</option>
+					<option value="tr">Y axis</option>
+					<option value="tl">X and Y</option>
+				</select>
+			</div>
+			<div class="disabled-when-playing">Music speed change : <select id="select-speed" style="font-family: 'Mina';width:10em;height: 20px;border-radius: 25px;">
+					<option value="Slowest">Extremely slow</option>
+					<option value="Slower">slower</option>
+					<option value="" selected>normal</option>
+					<option value="Faster">fast</option>
+					<option value="Fastest">Extremely fast</option>
+				</select>
+			</div><br>
+			<div class="disabled-when-playing">delayed (ms)：<input id="input-offset" type="number" step="5" class="input" style="font-family: 'Mina';width:4em;height: 30px;border-radius: 5px;" placeholder="0"></div>
+			<div><input id="btn-play" type="button" value="Touch to strat"> <input id="btn-pause" type="button" value="pause"></div>
+		</div>
+		<div><strong id="msg-out">&ensp;</strong></div>
+		<div id="stage">
+			<canvas id="canvas" class="fade"></canvas>
+			<div id="mask">
+				<div> </div>
+				<div> </div>
+			</div>
+		</div>
+		<div id="cover-dark" class="fade"></div>
+		<div id="cover-view" class="fade">
+			<div id="view-nav">
+				<a id="use">Simulator instructions</a>
+				<a id="res">Resource file description</a>
+				<a id="faq">Common problem</a>
+				<a id="msg">Information</a>
+			</div>
+			<div id="view-content">
+				<iframe id="view-doc" src="" frameborder="0"></iframe>
+				<div id="view-msg"></div>
+			</div>
+		</div>
+	</div>
+	<noscript><strong style="color:red">Fatal error cannot run. Please contact <a href="https://space.bilibili.com/274753872">lchzh3473</a></strong></noscript>
+</body>
+
+</html>
